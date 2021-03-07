@@ -5,14 +5,11 @@ import { Container, Input, Box } from "@chakra-ui/react";
 import DynamicText from "../components/DynamicText";
 
 const Home = () => {
-  // const [textValue, setTextValue] = useState("");
-  const dynamicRef = useRef();
+  const dynamicRef = useRef(null);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // setTextValue(e.target.value);
-    // console.log("dynamicRef======>", dynamicRef);
+    dynamicRef.current.changeValue(e.target.value);
   };
-
   return (
     <Container>
       <Head>
@@ -20,7 +17,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box d="flex" flexDirection="column" alignItems="center" minH="100vh" justifyContent="center">
-        <DynamicText />
+        <DynamicText ref={dynamicRef} />
         <Input onChange={onChange} placeholder="Please input text" />
       </Box>
     </Container>
