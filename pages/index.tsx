@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import Head from "next/head";
 import { Container, Input, Box } from "@chakra-ui/react";
 // import styles from "../styles/Home.module.css";
-import DynamicText from "../components/DynamicText";
+import DynamicText from "components/DynamicText";
 
 const Home = () => {
   const dynamicRef = useRef(null);
