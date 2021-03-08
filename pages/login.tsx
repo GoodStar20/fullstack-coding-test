@@ -1,5 +1,17 @@
 import React, { useState } from "react";
-import { Container, Input, Box, Text, FormControl, FormLabel, Button } from "@chakra-ui/react";
+import {
+  Container,
+  Input,
+  Box,
+  Text,
+  FormControl,
+  FormLabel,
+  Button,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  CloseButton,
+} from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -11,6 +23,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [isError, setError] = useState(false);
   const { email, password } = user;
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,9 +33,12 @@ const Login = () => {
   };
 
   const onSubmit = async () => {
-    await auth.signInWithEmailAndPassword(email, password).then(() => {
-      router.push("/blog");
-    });
+    await auth
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        router.push("/blog");
+      })
+      .catch((err) => setError(true));
 
     setUser({
       email: "",
@@ -33,7 +49,16 @@ const Login = () => {
   return (
     <Container>
       <Box d="flex" flexDirection="column" alignItems="center" minH="100vh" justifyContent="center">
-        <Text fontSize="3xl">Login</Text>
+        <Text fontSize="3xl" mb={2}>
+          Login
+        </Text>
+        {isError && (
+          <Alert status="error">
+            <AlertIcon />
+            <AlertTitle mr={2}>The password is invalid or the user does not have a password.</AlertTitle>
+            <CloseButton position="absolute" right="8px" top="8px" onClick={() => setError(false)} />
+          </Alert>
+        )}
         <FormControl id="email" isRequired mt={5}>
           <FormLabel>Email</FormLabel>
           <Input placeholder="Email" onChange={onChange} name="email" value={email} />
