@@ -31,7 +31,7 @@ const Signup = () => {
       <Box d="flex" flexDirection="column" alignItems="center" minH="100vh" justifyContent="center">
         <Text fontSize="3xl">Sign Up</Text>
         <FormControl id="displayName" isRequired mt={8}>
-          <FormLabel>First name</FormLabel>
+          <FormLabel>Full Name</FormLabel>
           <Input placeholder="User name" onChange={onChange} name="displayName" value={displayName} />
         </FormControl>
         <FormControl id="email" isRequired mt={5}>
