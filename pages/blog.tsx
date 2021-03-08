@@ -110,8 +110,8 @@ const Blog = () => {
 
         <Grid templateColumns="repeat(4, 1fr)" gap={5} mt={8}>
           {blogs.length > 0 &&
-            blogs.map((blog) => (
-              <Box w="100%" onClick={() => openBlog(blog)}>
+            blogs.map((blog, index) => (
+              <Box w="100%" onClick={() => openBlog(blog)} key={index}>
                 <Image src={blog.image} alt="Blog Image" objectFit="cover" height="180px" width="100%" />
                 <Text
                   fontSize="lg"
